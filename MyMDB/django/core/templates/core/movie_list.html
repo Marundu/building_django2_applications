@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block title %}
-All the Movies
+All Movies
 {% endblock %}
 
 {% block main %}
@@ -27,7 +27,7 @@ All the Movies
     
     {% if page_obj.has_previous %}
     <li class="page-item">
-      <a href="{% url 'core:MovieList' %}page={{ page_obj.previous_page_number }}" class="page-link">
+      <a href="{% url 'core:MovieList' %}?page={{ page_obj.previous_page_number }}" class="page-link">
         {{ page_obj.previous_page_number }}
       </a>
     </li>
