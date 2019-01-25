@@ -1,5 +1,14 @@
 from django.db import models
 
+class MovieManager(models.Manager):
+    def all_with_related_persons(self):
+        qs=self.get_queryset()
+        qs=qs.select_related(
+            'director')
+        qs=qs.prefetch_related(
+            'writers', 'actors')
+        return qs
+
 class PersonManager(models.Manager):
     def all_with_prefetch_movies(self):
         qs=self.get_queryset()
@@ -30,6 +39,8 @@ class Movie(models.Model):
     # Meta class for ordering
     class Meta:
         ordering=('-year', 'title')
+
+    objects=MovieManager()
 
     def __str__(self):
         return '{} ({})'.format(self.title, self.year)

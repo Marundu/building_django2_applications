@@ -7,7 +7,8 @@ from django.views.generic import (
 # class-based views
 
 class MovieDetail(DetailView):
-    model=Movie
+    queryset=(
+        Movie.objects.all_with_related_persons())
 
 class MovieList(ListView):
     model=Movie
